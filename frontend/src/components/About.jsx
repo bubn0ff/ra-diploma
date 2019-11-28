@@ -1,7 +1,7 @@
 import React from 'react';
 
 export default function About() {
-
+  
   return (
     <section className="top-sales">
       <h2 className="text-center">О магазине</h2>
