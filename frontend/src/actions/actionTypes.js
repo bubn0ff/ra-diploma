@@ -1,0 +1,18 @@
+// ХИТЫ ПРОДАЖ
+
+export const HITS_SALES_FETCH_REQUEST = 'HITS_SALES_FETCH_REQUEST';
+export const HITS_SALES_FETCH_SUCCESS = 'HITS_SALES_FETCH_SUCCESS';
+export const HITS_SALES_FETCH_FAILURE = 'HITS_SALES_FETCH_FAILURE';
+
+// КАТАЛОГ
+
+
+
+// КАРТОЧКА ТОВАРА
+
+export const ITEM_FETCH_REQUEST = 'ITEM_FETCH_REQUEST';
+export const ITEM_FETCH_FAILURE = 'ITEM_FETCH_FAILURE';
+export const ITEM_FETCH_SUCCESS = 'ITEM_FETCH_SUCCESS';
+
+// КОРЗИНА
+
