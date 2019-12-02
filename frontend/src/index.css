@@ -569,19 +569,23 @@ h2, .h2 {
 /* User's css */
 
 .catalog .row > div, .top-sales .row > div {
-	 margin-bottom: 1rem;
+	margin-bottom: 1rem;
 }
- .catalog .row .card, .top-sales .row .card {
-	 height: 100%;
+
+.catalog .row .card, .top-sales .row .card {
+	height: 100%;
 }
- .catalog .row .card .card-poster, .top-sales .row .card .card-poster {
-	 flex: 1 1 auto;
-	 display: flex;
-	 align-items: center;
+
+.catalog .row .card .card-poster, .top-sales .row .card .card-poster {
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
 }
- .catalog .row .card .card-body, .top-sales .row .card .card-body {
-	 flex: 0 1 auto;
+
+.catalog .row .card .card-body, .top-sales .row .card .card-body {
+	flex: 0 1 auto;
 }
- .catalog-item-size {
-	 cursor: pointer;
+
+.catalog-item-size {
+	cursor: pointer;
 }

@@ -1,7 +1,14 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import banner from '../img/banner.jpg';
-// добавить все нужные компоненты!!!
+
+import Home from '../components/Home';
+import Cart from '../components/Cart';
+import Product from '../components/Product';
+import Catalog from '../components/Catalog';
+import About from '../components/About';
+import Contacts from '../components/Contacts';
+import NotFound from '../components/NotFound';
 
 // Контейнер для контента между шапкой и подвалом
 export default function Container() {

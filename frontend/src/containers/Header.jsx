@@ -1,9 +1,15 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { links } from './Menu';
 import logo from '../img/header-logo.png';
+// import HeaderControls from '../components/HeaderControls';
 
 export default function Header() {
+  const links = [
+    { url: '/', title: 'Главная' },
+    { url: '/catalog', title: 'Каталог' },
+    { url: '/about', title: 'О магазине' },
+    { url: '/contacts', title: 'Контакты' }
+  ];
 
   return (
     <header className="container">

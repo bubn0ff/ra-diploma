@@ -1,8 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { getLinks, links } from './Menu';
 
 export default function Footer() {
+  const links = [
+    { url: '/about', title: 'О магазине' },
+    { url: '/catalog', title: 'Каталог' },
+    { url: '/contacts', title: 'Контакты' }
+  ];
 
   return (
     <footer className="container bg-light footer">
@@ -11,7 +15,7 @@ export default function Footer() {
           <section>
             <h5>Информация</h5>
             <ul className="nav flex-column">
-              {getLinks(links, 1).map(({ url, title }) => (
+              {links.map(({ url, title }) => (
                 <li key={url} className="nav-item">
                   <Link to={url} className="nav-link">{title}</Link>
                 </li>
