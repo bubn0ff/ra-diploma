@@ -15,12 +15,12 @@ export default function Catalog({ showSearch }) {
   // Одновременно устанавливаем строку поиска (если есть).
   useEffect(() => {
     dispatch(catalogInit(showSearch));
-  }, [dispatch]);
+  }, [dispatch, showSearch]);
 
   // Запускаем процесс загрузки данных (сначала список категорий, потом список товаров в категории).
   useEffect(() => {
     dispatch(catalogFetchRequest(false));
-  }, [dispatch, showSearch]);
+  }, [dispatch]);
 
   // Обработчик кнопок - кнопка повторного запроса (если не удалось загрузить данные) и кнопка "Загрузить ещё"
   const handleReload = () => {

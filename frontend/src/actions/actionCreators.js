@@ -9,6 +9,11 @@ import {
   CATALOG_FETCH_REQUEST,
   CATALOG_CATEGORY_CHANGE,
   CATALOG_SEARCH_CHANGE,
+  CART_REMOVE_ITEM,
+  CART_SEND_INIT,
+  CART_SEND_REQUEST,
+  CART_SEND_FAILURE,
+  CART_SEND_SUCCESS,
 } from './actionTypes';
 
 
@@ -58,4 +63,27 @@ export const catalogCategoryChange = category => ({
 
 export const catalogSearchChange = value => ({
   type: CATALOG_SEARCH_CHANGE, payload: { value },
+});
+
+
+// КОРЗИНА
+
+export const cartRemoveItem = id => ({
+  type: CART_REMOVE_ITEM, payload: { id },
+});
+
+export const cartSendInit = () => ({
+  type: CART_SEND_INIT,
+});
+
+export const cartSendRequest = owner => ({
+  type: CART_SEND_REQUEST, payload: { owner },
+});
+
+export const cartSendFailure = error => ({
+  type: CART_SEND_FAILURE, payload: { error },
+});
+
+export const cartSendSuccess = () => ({
+  type: CART_SEND_SUCCESS,
 });

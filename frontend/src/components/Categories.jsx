@@ -21,7 +21,7 @@ export default function Categories() {
         <li className='nav-item' key={item.id}>
           <a 
             className={item.id === category ? 'nav-link active' : 'nav-link'} 
-            href="#" 
+            href='#' 
             onClick={(event) => handleClick(event, item.id)}>
               {item.title}
           </a>
