@@ -7,8 +7,13 @@ import {
   ITEM_FETCH_SUCCESS,
   CATALOG_INIT,
   CATALOG_FETCH_REQUEST,
+  CATALOG_FETCH_FAILURE,
+  CATALOG_FETCH_SUCCESS,
+  CATALOG_FETCH_CATEGORIES_SUCCESS,
+  CATALOG_FETCH_ITEMS_SUCCESS,
   CATALOG_CATEGORY_CHANGE,
   CATALOG_SEARCH_CHANGE,
+  CART_ADD_ITEM,
   CART_REMOVE_ITEM,
   CART_SEND_INIT,
   CART_SEND_REQUEST,
@@ -57,6 +62,22 @@ export const catalogFetchRequest = (append = false) => ({ // после пере
   type: CATALOG_FETCH_REQUEST, payload: { append },
 });
 
+export const catalogFetchFailure = error => ({
+  type: CATALOG_FETCH_FAILURE, payload: { error },
+});
+
+export const catalogFetchSuccess = () => ({
+  type: CATALOG_FETCH_SUCCESS,
+});
+
+export const catalogFetchCategoriesSuccess = categories => ({
+  type: CATALOG_FETCH_CATEGORIES_SUCCESS, payload: { categories },
+});
+
+export const catalogFetchItemsSuccess = (items, append) => ({
+  type: CATALOG_FETCH_ITEMS_SUCCESS, payload: { items, append },
+});
+
 export const catalogCategoryChange = category => ({
   type: CATALOG_CATEGORY_CHANGE, payload: { category },
 });
@@ -67,6 +88,10 @@ export const catalogSearchChange = value => ({
 
 
 // КОРЗИНА
+
+export const cartAddItem = order => ({
+  type: CART_ADD_ITEM, payload: { order },
+});
 
 export const cartRemoveItem = id => ({
   type: CART_REMOVE_ITEM, payload: { id },

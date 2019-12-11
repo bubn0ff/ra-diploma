@@ -1,0 +1,43 @@
+export default class Api {
+  // Получение данных (GET) с сервера.
+  static async fetchData(url) {
+    const response = await fetch(url);
+    if (!response.ok) throw new Error(response.statusText);
+    return await response.json();
+  }
+
+  // Отправка данных (POST) на сервер без чтения ответных данных.
+  static async sendData(url, body) {
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+      },
+      body: JSON.stringify(body),
+    });
+
+    if (!response.ok) throw new Error(response.statusText);
+    return true;
+  }
+
+  static async fetchTopSales() {
+    return Api.fetchData(process.env.REACT_APP_TOP_SALES_URL);
+  }
+
+  static async fetchCatalogCategories() {
+    return Api.fetchData(process.env.REACT_APP_CATALOG_CATEGORIES_URL);
+  }
+
+  static async fetchCatalogItems(params = {}) {
+    const search = new URLSearchParams(params);
+    return Api.fetchData(`${process.env.REACT_APP_CATALOG_ITEMS_URL}?${search}`);
+  }
+
+  static async fetchCatalogItem(id) {
+    return Api.fetchData(`${process.env.REACT_APP_CATALOG_ITEMS_URL}/${id}`);
+  }
+
+  static async sendCart(data) {
+    return Api.sendData(process.env.REACT_APP_CART_URL, data);
+  }
+}

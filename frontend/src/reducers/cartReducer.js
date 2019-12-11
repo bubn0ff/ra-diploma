@@ -1,0 +1,54 @@
+import {
+  CART_ADD_ITEM,
+  CART_REMOVE_ITEM,
+  CART_SEND_INIT,
+  CART_SEND_REQUEST,
+  CART_SEND_FAILURE,
+  CART_SEND_SUCCESS,
+} from '../actions/actionCreators';
+
+const initialState = {
+  orders: [],
+  sending: false,
+  error: null,
+  success: false,
+};
+
+const compareOrder = (a, b) => (
+  a.productId === b.productId && a.size === b.size && a.price === b.price
+);
+
+export default function cartReducer(state = initialState, action) {
+  switch (action.type) {
+    case CART_ADD_ITEM: {
+      const orders = [...state.orders];
+      const indexOrder = orders.findIndex((el) => compareOrder(el, action.payload.order));
+
+      if (indexOrder === -1) {
+        orders.push(order);
+      } else {
+        orders[indexOrder].count += order.count;
+      }
+
+      return { ...state, orders };
+    }
+
+    case CART_REMOVE_ITEM:
+      return { ...state, orders: state.orders.filter((o) => o.id !== action.payload.id) };
+
+    case CART_SEND_INIT:
+      return { ...state, sending: false, error: null, success: false };
+
+    case CART_SEND_REQUEST:
+      return { ...state, sending: true, error: null, success: false };
+
+    case CART_SEND_FAILURE:
+      return { ...state, sending: false, error: action.payload.error };
+
+    case CART_SEND_SUCCESS:
+      return { ...state, orders: [], sending: false, success: true };
+
+    default:
+      return state;
+  }
+}
