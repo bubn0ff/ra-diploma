@@ -5,7 +5,7 @@ import {
   CART_SEND_REQUEST,
   CART_SEND_FAILURE,
   CART_SEND_SUCCESS,
-} from '../actions/actionCreators';
+} from '../actions/actionTypes';
 
 const initialState = {
   orders: [],
@@ -25,9 +25,9 @@ export default function cartReducer(state = initialState, action) {
       const indexOrder = orders.findIndex((el) => compareOrder(el, action.payload.order));
 
       if (indexOrder === -1) {
-        orders.push(order);
+        orders.push(action.payload.order);
       } else {
-        orders[indexOrder].count += order.count;
+        orders[indexOrder].count += action.payload.order.count;
       }
 
       return { ...state, orders };

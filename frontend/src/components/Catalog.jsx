@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
-import { catalogInit, catalogFetchRequest, catalogSearchChange } from '../actions/actionCreators';
+import { catalogInit, catalogFetchRequest, catalogSearchChange, catalogCategoryChange } from '../actions/actionCreators';
 import Preloader from './Preloader';
 import ProductList from './ProductList';
 import RepeatRequestButton from './RepeatRequestButton';
 import Categories from './Categories';
 
 export default function Catalog({ showSearch }) {
-  const { items, loading, error, more, search } = useSelector((state) => state.catalog);
+  const { items, categories, category, loading, error, more, search } = useSelector((state) => state.catalog);
   const dispatch = useDispatch();
 
   // Сброс глобального состояния при обновлении поискового запроса/переходе на страницу каталога.
@@ -33,6 +33,11 @@ export default function Catalog({ showSearch }) {
     dispatch(catalogSearchChange(value));
   };
 
+  // Обработчик изменения категории
+  const handleClick = id => {
+    dispatch(catalogCategoryChange(id));
+  };
+
   return (
     <section className='catalog'>
       <h2 className='text-center'>Каталог</h2>
@@ -43,7 +48,7 @@ export default function Catalog({ showSearch }) {
         </form>
       )}
 
-      <Categories />
+      <Categories categories={categories} category={category} onChange={handleClick} />
       <ProductList items={items} />
 
       {error && <RepeatRequestButton error={error} onClick={handleReload} />}

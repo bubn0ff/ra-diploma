@@ -20,8 +20,8 @@ export default class Api {
     return true;
   }
 
-  static async fetchTopSales() {
-    return Api.fetchData(process.env.REACT_APP_TOP_SALES_URL);
+  static async fetchHitsSales() {
+    return Api.fetchData(process.env.REACT_APP_HITS_SALES_URL);
   }
 
   static async fetchCatalogCategories() {

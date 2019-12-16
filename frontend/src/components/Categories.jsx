@@ -1,14 +1,10 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { catalogCategoryChange } from '../actions/actionCreators';
+import PropTypes from 'prop-types';
 
-export default function Categories() {
-  const { categories, category } = useSelector((state) => state.categories);
-  const dispatch = useDispatch();
-
-  const handleClick = (event, id) => {
+export default function Categories({ categories, category, onChange }) {
+  const handleCategoryChange = (event, id) => {
     event.preventDefault();
-    dispatch(catalogCategoryChange(id));
+    onChange(id);
   };
 
   if (categories.length === 0) {
@@ -21,8 +17,8 @@ export default function Categories() {
         <li className='nav-item' key={item.id}>
           <a 
             className={item.id === category ? 'nav-link active' : 'nav-link'} 
-            href='#' 
-            onClick={(event) => handleClick(event, item.id)}>
+            href='/#' 
+            onClick={(event) => handleCategoryChange(event, item.id)}>
               {item.title}
           </a>
         </li>
@@ -30,3 +26,8 @@ export default function Categories() {
     </ul>
   );
 }
+
+Categories.propTypes = {
+  categories: PropTypes.array.isRequired,
+  category: PropTypes.number,
+};

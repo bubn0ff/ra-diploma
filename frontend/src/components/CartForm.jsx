@@ -43,8 +43,8 @@ export default function CartForm({ onSubmit }) {
           </div>
 
           <div className='form-group form-check'>
-            <label className='form-check-label' htmlFor='agreement'>Согласен с правилами доставки</label>
             <input type='checkbox' className='form-check-input' id='agreement' checked={form.agreement} onChange={handleInput} />
+            <label className='form-check-label' htmlFor='agreement'>Согласен с правилами доставки</label>
           </div>
 
           <button type='submit' className='btn btn-outline-secondary' disabled={!form.phone || !form.address || !form.agreement}>Оформить</button>

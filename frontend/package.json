@@ -7,7 +7,6 @@
     "connected-react-router": "^6.5.2",
     "history": "^4.10.1",
     "prop-types": "^15.7.2",
-    "nanoid": "^2.1.7",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
     "react-media": "^1.10.0",
