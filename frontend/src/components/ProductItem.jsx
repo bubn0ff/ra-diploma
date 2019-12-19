@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import placeholder from '../img/placeholder.png';
 
-// Карточка товара в блоке товаров
+// Карточка одного товара в каталоге
 
 export default function ProductCardItem({ item }) {
   // обработчик для товара, если не загружается картинка - ставится заглушка
@@ -22,6 +22,7 @@ export default function ProductCardItem({ item }) {
           onError={handleErrorPlaceholder}
         />
       </div>
+
       <div className='card-body'>
         <p className='card-text'>{item.title}</p>
         <p className='card-text'>{item.price} руб.</p>

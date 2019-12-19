@@ -9,7 +9,7 @@ export function CartOrderSuccess() {
   )
 }
 
-export function CartEmpty() {
+export function CartOrderEmpty() {
   return (
     <section className='cart'>
       <h2 className='text-center'>Корзина</h2>

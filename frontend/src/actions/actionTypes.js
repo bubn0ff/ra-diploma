@@ -23,9 +23,8 @@ export const CATALOG_SEARCH_CHANGE = 'CATALOG_SEARCH_CHANGE';
 
 // КОРЗИНА
 
-export const CART_ADD_ITEM = 'CART_ADD_ITEM'; // проверить, пока под вопросом ???
+export const CART_ADD_ITEM = 'CART_ADD_ITEM';
 export const CART_REMOVE_ITEM = 'CART_REMOVE_ITEM';
-export const CART_SEND_INIT = 'CART_SEND_INIT';
 export const CART_SEND_REQUEST = 'CART_SEND_REQUEST';
 export const CART_SEND_FAILURE = 'CART_SEND_FAILURE';
 export const CART_SEND_SUCCESS = 'CART_SEND_SUCCESS';

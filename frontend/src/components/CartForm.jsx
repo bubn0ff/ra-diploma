@@ -22,7 +22,7 @@ export default function CartForm({ onSubmit }) {
   const handleSubmit = event => {
     event.preventDefault();
     const { phone, address } = form;
-    onSubmit({ phone, address }); // возвращаем из формы телефон и адрес
+    onSubmit({ phone, address }); // возвращаем в Cart из формы телефон и адрес
     setForm(initialForm); // снова устанавливаем начальное состояние формы
   };
 

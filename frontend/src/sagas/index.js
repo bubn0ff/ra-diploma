@@ -88,14 +88,7 @@ function* handleCartSendSaga(action) {
     const { orders } = yield select((state) => state.cart);
     const data = {
       owner,
-      items: orders.map(({
-        productId, price, count, size,
-      }) => ({
-        id: productId,
-        price,
-        count,
-        size,
-      })),
+      items: orders.map(({ id, price, count, size }) => ({ id, price, count, size })),
     };
 
     // Важно прервать запрос, если пользовать ушел со страницы корзины.

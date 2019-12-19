@@ -29,7 +29,7 @@ export default function CartTable() {
           {orders.map((order, index) => (
             <tr key={order.id}>
               <th scope='row'>{index + 1}</th>
-              <td><Link to={`/catalog/${order.productId}`}>{order.title}</Link></td>
+              <td><Link to={`/catalog/${order.id}`}>{order.title}</Link></td>
               <td>{order.size}</td>
               <td>{order.count}</td>
               <td>{order.price} руб.</td>
