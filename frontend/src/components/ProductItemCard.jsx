@@ -34,7 +34,7 @@ export default function ProductItemCard({ item }) {
 
   // Обработчик отправки выбранного товара в корзину
   const handleSubmitToCart = () => {
-    const newItem = new Product(item.id, item.title, item.size, item.count, item.price);
+    const newItem = new Product(item.id, item.title, size, count, item.price);
     dispatch(cartAddItem(newItem));
     dispatch(push('/cart'));
   };

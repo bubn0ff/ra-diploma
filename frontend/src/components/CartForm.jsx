@@ -34,16 +34,38 @@ export default function CartForm({ onSubmit }) {
 
           <div className='form-group'>
             <label htmlFor='phone'>Телефон</label>
-            <input className='form-control' id='phone' placeholder='Ваш телефон' value={form.phone} onChange={handleInput} />
+            <input 
+              type='tel'
+              className='form-control' 
+              id='phone' 
+              maxLength='12'
+              pattern='^\+7\d{3}\d{7}$'
+              placeholder='Ваш телефон в формате +7хххххххххх' 
+              value={form.phone} 
+              onChange={handleInput} 
+            />
           </div>
 
           <div className='form-group'>
             <label htmlFor='address'>Адрес доставки</label>
-            <input className='form-control' id='address' placeholder='Адрес доставки' value={form.address} onChange={handleInput} />
+            <input 
+              type='text'
+              className='form-control' 
+              id='address' 
+              placeholder='Адрес доставки' 
+              value={form.address} 
+              onChange={handleInput} 
+            />
           </div>
 
           <div className='form-group form-check'>
-            <input type='checkbox' className='form-check-input' id='agreement' checked={form.agreement} onChange={handleInput} />
+            <input 
+              type='checkbox' 
+              className='form-check-input' 
+              id='agreement' 
+              checked={form.agreement} 
+              onChange={handleInput} 
+            />
             <label className='form-check-label' htmlFor='agreement'>Согласен с правилами доставки</label>
           </div>
 

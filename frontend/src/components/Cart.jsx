@@ -10,37 +10,37 @@ import CartForm from './CartForm';
 
 export default function Cart() {
   const { orders, sending, error, success } = useSelector((state) => state.cart);
-  const [user, setUser] = useState(null);
+  const [owner, setOwner] = useState(null);
   const location = useLocation();
   const dispatch = useDispatch();
 
-  // Сброс состояния итога офомления корзины при переходе на страницу (или обновлении).
+  // Сброс состояния итога оформления корзины при переходе на страницу (или обновлении).
   useEffect(() => {
     dispatch(cartSendInit());
   }, [dispatch, location.key]);
 
   // При изменении данных покупателя создаём запрос на оформление заказа.
   useEffect(() => {
-    if (user) {
-      dispatch(cartSendRequest(user));
+    if (owner) {
+      dispatch(cartSendRequest(owner));
     }
-  }, [dispatch, user]);
+  }, [dispatch, owner]);
 
   // Обработка запроса на оформление заказа с новыми или прежними данными
-  const handleSendCart = (newUser = null) => {
-    setUser((prev) => ( newUser || { ...prev } ));
+  const handleSendCart = (newOwner = null) => {
+    setOwner((prev) => ( newOwner || { ...prev } ));
   };
 
   let content = null;
 
   // продумать новую логику данного блока!!!
   if (success) {
-    content = <CartOrderSuccess />;
+    content = <CartOrderSuccess />; // НЕ РАБОТАЕТ! НАДО РАЗОБРАТЬСЯ!
   } else if (orders.length === 0) {
     return <CartEmpty />;
   } else if (error || sending) {
     content = (
-      <section class='cart'>
+      <section className='cart'>
         {error && <RepeatRequestButton error={error} onClick={() => handleSendCart()} />}
         {sending && <Preloader />}
       </section>

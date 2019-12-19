@@ -30,4 +30,5 @@ export default function Categories({ categories, category, onChange }) {
 Categories.propTypes = {
   categories: PropTypes.array.isRequired,
   category: PropTypes.number,
+  onChange: PropTypes.func.isRequired,
 };

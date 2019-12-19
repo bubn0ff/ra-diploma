@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import { itemFetchRequest } from '../actions/actionCreators';
 import Preloader from './Preloader';
 import RepeatRequestButton from './RepeatRequestButton';
@@ -26,8 +26,3 @@ export default function Product({ match }) {
     </section>
   );
 }
-
-// данный пункт под вопросом
-Product.propTypes = {
-  match: PropTypes.number.isRequired,
-};
