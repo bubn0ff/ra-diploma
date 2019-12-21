@@ -15,6 +15,7 @@ import {
   CATALOG_SEARCH_CHANGE,
   CART_ADD_ITEM,
   CART_REMOVE_ITEM,
+  CART_SEND_INIT,
   CART_SEND_REQUEST,
   CART_SEND_FAILURE,
   CART_SEND_SUCCESS,
@@ -94,6 +95,10 @@ export const cartAddItem = order => ({
 
 export const cartRemoveItem = id => ({
   type: CART_REMOVE_ITEM, payload: { id },
+});
+
+export const cartSendInit = () => ({
+  type: CART_SEND_INIT,
 });
 
 export const cartSendRequest = owner => ({

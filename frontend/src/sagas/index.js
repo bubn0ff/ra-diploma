@@ -94,7 +94,7 @@ function* handleCartSendSaga(action) {
     // Важно прервать запрос, если пользовать ушел со страницы корзины.
     const { result } = yield race({
       result: call(() => Api.sendCart(data)),
-      location: take(LOCATION_CHANGE),                                             // ??? под вопросом ???
+      location: take(LOCATION_CHANGE),
     });
 
     // Если пользователь дождался ответа от сервера, то заказ успешно оформлен.

@@ -1,12 +1,12 @@
 export default class Api {
-  // Получение данных (GET) с сервера.
+  // получение данных с сервера
   static async fetchData(url) {
     const response = await fetch(url);
     if (!response.ok) throw new Error(response.statusText);
     return await response.json();
   }
 
-  // Отправка данных (POST) на сервер без чтения ответных данных.
+  // отправка данных на сервер
   static async sendData(url, body) {
     const response = await fetch(url, {
       method: 'POST',

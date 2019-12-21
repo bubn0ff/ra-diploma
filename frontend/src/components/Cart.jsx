@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { cartSendRequest } from '../actions/actionCreators';
+import { cartSendRequest, cartSendInit } from '../actions/actionCreators';
 import RepeatRequestButton from './RepeatRequestButton';
 import { CartOrderSuccess, CartOrderEmpty } from './CartStatus';
 import Preloader from './Preloader';
@@ -11,6 +11,11 @@ export default function Cart() {
   const { orders, sending, error, success } = useSelector((state) => state.cart);
   const [owner, setOwner] = useState(null);
   const dispatch = useDispatch();
+
+  // Сброс состояния итога оформления корзины при переходе на страницу (или обновлении).
+  useEffect(() => {
+    dispatch(cartSendInit());
+  }, [dispatch]);
 
   // При изменении данных покупателя создаём запрос на оформление заказа.
   useEffect(() => {

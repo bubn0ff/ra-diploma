@@ -7,7 +7,7 @@ import catalogReducer from '../reducers/catalogReducer';
 import hitsSalesReducer from '../reducers/hitsSalesReducer';
 import itemReducer from '../reducers/itemReducer';
 import cartReducer from '../reducers/cartReducer';
-// import { cartStorageMiddleware, cartRehydrateStore } from './cartStorage';
+import { storageCartMiddleware, storageCartInit } from '../api/cartLocaleStorage';
 
 export const history = createBrowserHistory();
 
@@ -24,9 +24,13 @@ const sagaMiddleware = createSagaMiddleware();
 
 const store = createStore(
   reducer,
+  {
+    cart: storageCartInit(),
+  },
   composeEnhancers(applyMiddleware(
     routerMiddleware(history),
     sagaMiddleware,
+    storageCartMiddleware,
   )),
 );
 

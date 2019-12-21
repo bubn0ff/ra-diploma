@@ -1,6 +1,7 @@
 import {
   CART_ADD_ITEM,
   CART_REMOVE_ITEM,
+  CART_SEND_INIT,
   CART_SEND_REQUEST,
   CART_SEND_FAILURE,
   CART_SEND_SUCCESS,
@@ -34,6 +35,9 @@ export default function cartReducer(state = initialState, action) {
 
     case CART_REMOVE_ITEM:
       return { ...state, orders: state.orders.filter((o) => o.id !== action.payload.id) };
+
+    case CART_SEND_INIT:
+      return { ...state, sending: false, error: null, success: false };
 
     case CART_SEND_REQUEST:
       return { ...state, sending: true, error: null, success: false };
