@@ -54,11 +54,11 @@ export const itemFetchSuccess = item => ({
 
 // КАТАЛОГ
 
-export const catalogInit = (search = '') => ({ // пока под вопросом этот action
+export const catalogInit = (search = '') => ({
   type: CATALOG_INIT, payload: { search },
 });
 
-export const catalogFetchRequest = (append = false) => ({ // после переименовать append
+export const catalogFetchRequest = (append = false) => ({
   type: CATALOG_FETCH_REQUEST, payload: { append },
 });
 

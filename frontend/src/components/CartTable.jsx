@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { cartRemoveItem } from '../actions/actionCreators';
 
-// Таблица товаров в корзине.
+// Таблица товаров в корзине
 
 export default function CartTable() {
   const { orders } = useSelector((state) => state.cart);

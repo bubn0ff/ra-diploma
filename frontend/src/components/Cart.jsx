@@ -12,12 +12,12 @@ export default function Cart() {
   const [owner, setOwner] = useState(null);
   const dispatch = useDispatch();
 
-  // Сброс состояния итога оформления корзины при переходе на страницу (или обновлении).
+  // Сброс состояния итога оформления корзины при переходе на страницу (или обновлении)    ???
   useEffect(() => {
     dispatch(cartSendInit());
   }, [dispatch]);
 
-  // При изменении данных покупателя создаём запрос на оформление заказа.
+  // Cоздание запроса на оформление заказа при изменении данных покупателя
   useEffect(() => {
     if (owner) {
       dispatch(cartSendRequest(owner));
@@ -31,16 +31,15 @@ export default function Cart() {
 
   let content = null;
 
-  // продумать новую логику данного блока!!!
   if (success) {
     content = <CartOrderSuccess />;
   } else if (orders.length === 0) {
     return <CartOrderEmpty />;
-  } else if (error || sending) {
+  } else if (sending || error) {
     content = (
       <section className='cart'>
-        {error && <RepeatRequestButton error={error} onClick={() => handleSendCart()} />}
         {sending && <Preloader />}
+        {error && <RepeatRequestButton error={error} onClick={() => handleSendCart()} />}
       </section>
     );
   } else {

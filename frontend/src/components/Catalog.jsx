@@ -42,11 +42,13 @@ export default function Catalog({ showSearch }) {
     <section className='catalog'>
       <h2 className='text-center'>Каталог</h2>
 
-      {showSearch && (
-        <form className='catalog-search-form form-inline'>
-          <input className='form-control' placeholder="Поиск" value={search} onChange={handleInput} />
-        </form>
-      )}
+      {showSearch && 
+        (
+          <form className='catalog-search-form form-inline'>
+            <input className='form-control' placeholder='Поиск' value={search} onChange={handleInput} />
+          </form>
+        )
+      }
 
       <Categories categories={categories} category={category} onChange={handleClick} />
       <ProductList items={items} />
@@ -69,7 +71,7 @@ export default function Catalog({ showSearch }) {
 }
 
 Catalog.propTypes = {
-  showSearch: PropTypes.bool.isRequired, // нет переменной showSearch - нет поиска
+  showSearch: PropTypes.bool, // нет переменной showSearch - нет поиска
 };
 
 Catalog.defaultProps = {

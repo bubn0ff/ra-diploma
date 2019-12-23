@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 
 // В корзине - блок "Оформление заказа"
 
@@ -74,4 +75,8 @@ export default function CartForm({ onSubmit }) {
       </div>
     </section>
   );
+}
+
+CartForm.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
 }
