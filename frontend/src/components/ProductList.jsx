@@ -2,21 +2,25 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ProductItem from './ProductItem';
 
-/* Список товаров. Используется в блоках "Каталог" и "Хит продаж" */
+// Список товаров (используется в блоках "Каталог" и "Хит продаж")
 
 export default function ProductList({ items }) {
-  if (items.length === 0) {
-    return null;
-  }
+  const blank = items.length === 0;
 
   return (
-    <div className='row'>
-      {items.map((item) => (
-        <div key={item.id} className='col-4'>
-          <ProductItem item={item} />
-        </div>
-      ))}
-    </div>
+    <>
+      {blank ? null : 
+        (
+          <div className='row'>
+            {items.map((item) => (
+              <div key={item.id} className='col-4'>
+                <ProductItem item={item} />
+              </div>
+            ))}
+          </div>
+        )
+      }
+    </>
   );
 }
 

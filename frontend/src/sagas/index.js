@@ -8,7 +8,7 @@ import {
   CART_SEND_REQUEST,
 } from '../actions/actionTypes';
 import { 
-  hitsSalesFetchFailture, 
+  hitsSalesFetchFailure, 
   hitsSalesFetchSuccess,
   itemFetchFailure,
   itemFetchSuccess,
@@ -30,7 +30,7 @@ function* handleHitsSalesFetchSaga() {
     const data = yield call(Api.fetchHitsSales);
     yield put(hitsSalesFetchSuccess(data));
   } catch (error) {
-    yield put(hitsSalesFetchFailture(error.message));
+    yield put(hitsSalesFetchFailure(error.message));
   }
 }
 
@@ -91,13 +91,13 @@ function* handleCartSendSaga(action) {
       items: orders.map(({ id, price, count, size }) => ({ id, price, count, size })),
     };
 
-    // Важно прервать запрос, если пользовать ушел со страницы корзины.
+    // отмена запроса, если пользовать ушёл со страницы корзины
     const { result } = yield race({
       result: call(() => Api.sendCart(data)),
       location: take(LOCATION_CHANGE),
     });
 
-    // Если пользователь дождался ответа от сервера, то заказ успешно оформлен.
+    // заказ успешно оформлен, если пользователь дождался ответа сервера
     if (result) {
       yield put(cartSendSuccess());
     }

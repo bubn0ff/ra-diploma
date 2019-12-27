@@ -13,9 +13,9 @@ import {
   CATALOG_FETCH_ITEMS_SUCCESS,
   CATALOG_CATEGORY_CHANGE,
   CATALOG_SEARCH_CHANGE,
+  CART_SEND_INIT,
   CART_ADD_ITEM,
   CART_REMOVE_ITEM,
-  CART_SEND_INIT,
   CART_SEND_REQUEST,
   CART_SEND_FAILURE,
   CART_SEND_SUCCESS,
@@ -28,7 +28,7 @@ export const hitsSalesFetchRequest = () => ({
   type: HITS_SALES_FETCH_REQUEST,
 });
 
-export const hitsSalesFetchFailture = error => ({
+export const hitsSalesFetchFailure = error => ({
   type: HITS_SALES_FETCH_FAILURE, payload: { error },
 });
 
@@ -89,16 +89,16 @@ export const catalogSearchChange = value => ({
 
 // КОРЗИНА
 
+export const cartSendInit = () => ({
+  type: CART_SEND_INIT,
+});
+
 export const cartAddItem = order => ({
   type: CART_ADD_ITEM, payload: { order },
 });
 
 export const cartRemoveItem = id => ({
   type: CART_REMOVE_ITEM, payload: { id },
-});
-
-export const cartSendInit = () => ({
-  type: CART_SEND_INIT,
 });
 
 export const cartSendRequest = owner => ({

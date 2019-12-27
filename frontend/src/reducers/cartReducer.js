@@ -1,7 +1,7 @@
 import {
+  CART_SEND_INIT,
   CART_ADD_ITEM,
   CART_REMOVE_ITEM,
-  CART_SEND_INIT,
   CART_SEND_REQUEST,
   CART_SEND_FAILURE,
   CART_SEND_SUCCESS,
@@ -20,14 +20,17 @@ const compareOrder = (a, b) => (
 
 export default function cartReducer(state = initialState, action) {
   switch (action.type) {
+    case CART_SEND_INIT:
+      return { ...state, sending: false, error: null, success: false };
+
     case CART_ADD_ITEM: {
       const orders = [...state.orders];
-      const indexOrder = orders.findIndex((el) => compareOrder(el, action.payload.order));
+      const orderIndex = orders.findIndex((el) => compareOrder(el, action.payload.order));
 
-      if (indexOrder === -1) {
+      if (orderIndex === -1) {
         orders.push(action.payload.order);
       } else {
-        orders[indexOrder].count += action.payload.order.count;
+        orders[orderIndex].count += action.payload.order.count;
       }
 
       return { ...state, orders };
@@ -35,9 +38,6 @@ export default function cartReducer(state = initialState, action) {
 
     case CART_REMOVE_ITEM:
       return { ...state, orders: state.orders.filter((o) => o.id !== action.payload.id) };
-
-    case CART_SEND_INIT:
-      return { ...state, sending: false, error: null, success: false };
 
     case CART_SEND_REQUEST:
       return { ...state, sending: true, error: null, success: false };

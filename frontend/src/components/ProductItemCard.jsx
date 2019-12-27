@@ -6,30 +6,24 @@ import { cartAddItem } from '../actions/actionCreators';
 import placeholder from '../img/placeholder.png';
 import Product from '../models/Product';
 
-// Добавление товара в корзину
+// Добавление товара в корзину (нет доступных размеров - нет поля количества и кнопки "добавить")
 
 export default function ProductItemCard({ item }) {
   const [count, setCount] = useState(1);
-  const [size, setSize] = useState(null); // или false
+  const [size, setSize] = useState(null);
   const dispatch = useDispatch();
-
-  const sizes = item.sizes ? item.sizes.filter(({ avalible }) => avalible)
-  .map(({ size }) => size) : [];
+  
+  const avalibleSizes = item.sizes.filter(({ avalible }) => avalible);
+  const samples = avalibleSizes.map(({ size }) => size);
+  const sizes = item.sizes ? samples : [];
+  const blank = sizes.length === 0;
 
   const handleIncrement = () => {
-    if (count >= 10) {
-      setCount(10);
-    } else {
-      setCount(count + 1);
-    }
+    return count >= 10 ? setCount(10) : setCount(count + 1);
   };
 
   const handleDecrement = () => {
-    if (count <= 1) {
-      setCount(1);
-    } else {
-      setCount(count - 1);
-    }
+    return count <= 1 ? setCount(1) : setCount(count - 1);
   };
 
   // Обработчик отправки выбранного товара в корзину
@@ -39,20 +33,21 @@ export default function ProductItemCard({ item }) {
     dispatch(push('/cart'));
   };
 
-  // обработчик для товара, если не загружается картинка - ставится заглушка
+  // Обработчик для товара, если не загружается картинка - ставится заглушка
   const handleErrorPlaceholder = event => {
     event.target.onerror = null;
     event.target.src = placeholder;
   }
 
-  if (sizes.length === 0) {
-    return (<p className='text-center'>Размеры отсутствуют.</p>);
-  }
-
   return (
     <div className='row'>
       <div className='col-5'>
-        <img src={item.images[0]} className='img-fluid' alt={item.title || 'img-placeholder'} onError={handleErrorPlaceholder} />
+        <img 
+          src={item.images[0]} 
+          className='img-fluid' 
+          alt={item.title || 'img-placeholder'} 
+          onError={handleErrorPlaceholder} 
+        />
       </div>
 
       <div className='col-7'>
@@ -98,16 +93,22 @@ export default function ProductItemCard({ item }) {
           ))}
         </p>
 
-        <p>Количество: 
-          <span className='btn-group btn-group-sm pl-2'>
-            <button className='btn btn-secondary' onClick={handleDecrement}>-</button>
-            <span className='btn btn-outline-primary'>{count}</span>
-            <button className='btn btn-secondary' onClick={handleIncrement}>+</button>
-          </span>
-        </p>
-      </div>
+        {blank ? null : 
+          (
+            <>
+              <p>Количество: 
+                <span className='btn-group btn-group-sm pl-2'>
+                  <button className='btn btn-secondary' onClick={handleDecrement}>-</button>
+                  <span className='btn btn-outline-primary'>{count}</span>
+                  <button className='btn btn-secondary' onClick={handleIncrement}>+</button>
+                </span>
+              </p>
 
-      <button className='btn btn-danger btn-block btn-lg' disabled={!size} onClick={handleSubmitToCart}>В корзину</button>
+              <button className='btn btn-danger btn-block btn-lg' disabled={!size} onClick={handleSubmitToCart}>В корзину</button>
+            </>
+          )
+        }
+      </div>
 
       </div>
     </div>

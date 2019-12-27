@@ -16,6 +16,7 @@ export default function Header() {
       <div className='row'>
         <div className='col'>
           <nav className='navbar navbar-expand-sm navbar-light bg-light'>
+            
             <NavLink to='/' className='navbar-brand'>
               <img src={logo} alt='Bosa Noga' />
             </NavLink>

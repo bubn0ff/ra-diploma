@@ -12,7 +12,7 @@ import {
 const initialState = {
   categories: [],
   category: 0, // активная категория
-  search: '', // данные со строки поиска
+  search: '', // значение со строки поиска
   items: [],
   more: true,
   loading: false,

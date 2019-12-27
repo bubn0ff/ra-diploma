@@ -8,7 +8,7 @@ import { cartRemoveItem } from '../actions/actionCreators';
 export default function CartTable() {
   const { orders } = useSelector((state) => state.cart);
   const dispatch = useDispatch();
-  const totalPrice = orders.reduce((sum, { price, count }) => sum + price * count, 0);
+  const total = orders.reduce((sum, { price, count }) => sum + price * count, 0);
 
   return (
     <section className='cart'>
@@ -41,7 +41,7 @@ export default function CartTable() {
 
           <tr>
             <td colSpan='5' className='text-right'>Общая стоимость</td>
-            <td>{totalPrice} руб.</td>
+            <td>{total} руб.</td>
           </tr>
         </tbody>
       </table>

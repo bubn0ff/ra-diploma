@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import placeholder from '../img/placeholder.png';
 
-// Карточка одного товара в каталоге
+// Карточка открытого товара в каталоге
 
 export default function ProductCardItem({ item }) {
-  // обработчик для товара, если не загружается картинка - ставится заглушка
+  // Обработчик заглушки для товара, если не загружается картинка
   const handleErrorPlaceholder = event => {
     event.target.onerror = null;
     event.target.src = placeholder;

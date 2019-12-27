@@ -12,16 +12,14 @@ export default function Cart() {
   const [owner, setOwner] = useState(null);
   const dispatch = useDispatch();
 
-  // Сброс состояния итога оформления корзины при переходе на страницу (или обновлении)    ???
+  // Сброс глобального состояния корзины
   useEffect(() => {
     dispatch(cartSendInit());
   }, [dispatch]);
 
   // Cоздание запроса на оформление заказа при изменении данных покупателя
   useEffect(() => {
-    if (owner) {
-      dispatch(cartSendRequest(owner));
-    }
+    if (owner) dispatch(cartSendRequest(owner));
   }, [dispatch, owner]);
 
   // Обработка запроса на оформление заказа с новыми или прежними данными
@@ -29,27 +27,20 @@ export default function Cart() {
     setOwner((prev) => ( newOwner || { ...prev } ));
   };
 
-  let content = null;
-
   if (success) {
-    content = <CartOrderSuccess />;
+    return <CartOrderSuccess />;
   } else if (orders.length === 0) {
     return <CartOrderEmpty />;
-  } else if (sending || error) {
-    content = (
-      <section className='cart'>
-        {sending && <Preloader />}
-        {error && <RepeatRequestButton error={error} onClick={() => handleSendCart()} />}
-      </section>
-    );
+  } else if (sending) {
+    return <Preloader />;
+  } else if (error) {
+    return <RepeatRequestButton error={error} onClick={() => handleSendCart()} />;
   } else {
-    content = (
+    return (
       <>
         <CartTable />
         <CartForm onSubmit={(newOwner) => handleSendCart(newOwner)} />
       </>
     );
   }
-
-  return content;
 }

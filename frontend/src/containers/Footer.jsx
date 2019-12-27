@@ -14,6 +14,7 @@ export default function Footer() {
         <div className='col'>
           <section>
             <h5>Информация</h5>
+
             <ul className='nav flex-column'>
               {links.map(({ url, title }) => (
                 <li key={url} className='nav-item'>
@@ -21,6 +22,7 @@ export default function Footer() {
                 </li>
               ))}
             </ul>
+            
           </section>
         </div>
         <div className='col'>

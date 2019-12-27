@@ -4,7 +4,7 @@ import banner from '../img/banner.jpg';
 import Home from '../components/Home';
 import Cart from '../components/Cart';
 import Product from '../components/Product';
-import Catalog from '../components/Catalog';
+import ToCatalog from '../components/ToCatalog';
 import About from '../components/About';
 import Contacts from '../components/Contacts';
 import NotFound from '../components/NotFound';
@@ -26,7 +26,7 @@ export default function Container() {
             <Route exact path='/cart' component={Cart} />
             <Route exact path='/about' component={About} />
             <Route exact path='/catalog/:id' component={Product} />
-            <Route exact path='/catalog' component={Catalog} />
+            <Route exact path='/catalog' component={ToCatalog} />
             <Route exact path='/contacts' component={Contacts} />
             <Route path='*' component={NotFound} />
           </Switch>

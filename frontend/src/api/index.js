@@ -1,12 +1,12 @@
+// Общее API для отправки запросов на сервер
+
 export default class Api {
-  // получение данных с сервера
   static async fetchData(url) {
     const response = await fetch(url);
     if (!response.ok) throw new Error(response.statusText);
     return await response.json();
   }
 
-  // отправка данных на сервер
   static async sendData(url, body) {
     const response = await fetch(url, {
       method: 'POST',

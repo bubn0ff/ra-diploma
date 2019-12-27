@@ -38,20 +38,20 @@ POST {{url}}/api/order
 Content-Type: application/json
 
 {
-  "owner": {
-    "phone": "+7xxxxxxxxxx",
-    "address": "Moscow City"
-  },
-  "items": [
-    {
-      "id": 66,
-      "price": 34000,
-      "count": 1
+    "owner": {
+        "phone": "+7xxxxxxxxxx",
+        "address": "Moscow City"
     },
-    {
-      "id": 65,
-      "price": 7600,
-      "count": 1
-    }
-  ]
+    "items": [
+        {
+            "id": 66,
+            "price": 34000,
+            "count": 1
+        },
+        {
+            "id": 65,
+            "price": 7600,
+            "count": 1
+        }
+    ]
 }

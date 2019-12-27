@@ -6,23 +6,28 @@ import Preloader from './Preloader';
 import ProductList from './ProductList';
 import RepeatRequestButton from './RepeatRequestButton';
 import Categories from './Categories';
+import { getUrl } from '../api/apiHeader';
+import { push } from 'connected-react-router';
+import apiSearchValue from '../api/apiSearchValue';
+
+// Каталог (нет showSearch - нет поля поиска в каталоге)
 
 export default function Catalog({ showSearch }) {
   const { items, categories, category, loading, error, more, search } = useSelector((state) => state.catalog);
+  const isShowSearch = apiSearchValue(showSearch ? 'q' : null);
   const dispatch = useDispatch();
-
-  // Сброс глобального состояния при обновлении поискового запроса/переходе на страницу каталога.
-  // Одновременно устанавливаем строку поиска (если есть).
+  
+  // Сброс глобального состояния
   useEffect(() => {
-    dispatch(catalogInit(showSearch));
-  }, [dispatch, showSearch]);
+    dispatch(catalogInit(isShowSearch));
+  }, [dispatch, isShowSearch]);
 
-  // Запускаем процесс загрузки данных (сначала список категорий, потом список товаров в категории).
+  // Запуск процесса загрузки данных (список категорий, список товаров в категории).
   useEffect(() => {
     dispatch(catalogFetchRequest(false));
-  }, [dispatch]);
+  }, [dispatch, isShowSearch]);
 
-  // Обработчик кнопок - кнопка повторного запроса (если не удалось загрузить данные) и кнопка "Загрузить ещё"
+  // Обработчик кнопки повторного запроса (если не удалось загрузить данные, она же "Загрузить ещё")
   const handleReload = () => {
     dispatch(catalogFetchRequest(true));
   };
@@ -32,6 +37,13 @@ export default function Catalog({ showSearch }) {
     const { value } = event.target;
     dispatch(catalogSearchChange(value));
   };
+
+   // Обработчик формы поиска в каталоге, когда там что-то есть
+   const handleSearchFormSubmit = event => {
+    event.preventDefault();
+    const url = getUrl('/catalog', search);
+    dispatch(push(url));
+  }
 
   // Обработчик изменения категории
   const handleClick = id => {
@@ -44,8 +56,8 @@ export default function Catalog({ showSearch }) {
 
       {showSearch && 
         (
-          <form className='catalog-search-form form-inline'>
-            <input className='form-control' placeholder='Поиск' value={search} onChange={handleInput} />
+          <form className='catalog-search-form form-inline' onSubmit={handleSearchFormSubmit}>
+            <input className='form-control' placeholder='Поиск' value={search || ''} onChange={handleInput} />
           </form>
         )
       }
@@ -71,7 +83,7 @@ export default function Catalog({ showSearch }) {
 }
 
 Catalog.propTypes = {
-  showSearch: PropTypes.bool, // нет переменной showSearch - нет поиска
+  showSearch: PropTypes.bool.isRequired,
 };
 
 Catalog.defaultProps = {

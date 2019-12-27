@@ -6,26 +6,24 @@ import { getUrl } from '../api/apiHeader';
 // Поиск и корзина в шапке (функционал)
 
 export default function HeaderSearchCart() {
-  const [showSearch, setShowSearch] = useState(false);
+  const [showSearchField, setShowSearchField] = useState(false);
   const [searchForm, setSearchForm] = useState('');
   const { orders } = useSelector((state) => state.cart);
   const searchInput = useRef(null);
   const dispatch = useDispatch();
 
-  // Установить фокус при появлении поля поиска
+  // Установка фокуса при появлении поля поиска
   useEffect(() => {
-    if (showSearch) {
-      searchInput.current.focus();
-    }
-  }, [showSearch]);
+    if (showSearchField) searchInput.current.focus();
+  }, [showSearchField]);
 
-  // Обработчик клика на значок корзины в шапке
+  // Обработчик клика на значке корзины в шапке
   const handleCartClick = () => {
     dispatch(push('/cart'));
   };
 
-  // Обработчик поля ввода в строке поиска
-  const handleSearch = event => {
+  // Обработчик поля ввода в строке поиска (получаем значение поля)
+  const handleSearchInput = event => {
     const { value } = event.target;
     setSearchForm(value);
   };
@@ -33,12 +31,8 @@ export default function HeaderSearchCart() {
   // Обработчик формы поиска в шапке, когда там что-то есть
   const handleSearchClick = () => {
     const url = getUrl('/catalog', searchForm);
-
-    if (searchForm.trim() !== '') {
-      dispatch(push(url));         // ****     НЕ РАБОТАЕТ, ПРОДУМАТЬ НОВУЮ ЛОГИКУ !!!     ****
-    }
-
-    setShowSearch(prev => !prev);
+    if (searchForm.trim() !== '') dispatch(push(url));
+    setShowSearchField(prev => !prev);
     setSearchForm('');
   };
 
@@ -60,7 +54,7 @@ export default function HeaderSearchCart() {
 
       <form
         data-id='search-form'
-        className={ !showSearch ? 'header-controls-search-form form-inline invisible' : 'header-controls-search-form form-inline'}
+        className={ !showSearchField ? 'header-controls-search-form form-inline invisible' : 'header-controls-search-form form-inline' }
         onSubmit={handleSearchSubmit}
       >
         <input
@@ -68,7 +62,7 @@ export default function HeaderSearchCart() {
           className='form-control'
           placeholder='Поиск'
           value={searchForm}
-          onChange={handleSearch}
+          onChange={handleSearchInput}
         />
       </form>
     </div>

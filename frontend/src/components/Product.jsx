@@ -5,13 +5,14 @@ import Preloader from './Preloader';
 import RepeatRequestButton from './RepeatRequestButton';
 import ProductItemCard from './ProductItemCard';
 
-// Карточка товара
+// Карточка товара в каталоге
+
 export default function Product({ match }) {
   const { item, loading, error } = useSelector((state) => state.product);
   const id = parseInt(match.params.id, 10);
   const dispatch = useDispatch();
 
-  // Перезагружаем товар при его изменении.
+  // Перезагрузка товара при его изменении
   useEffect(() => {
     dispatch(itemFetchRequest(id));
   }, [dispatch, id]);
