@@ -36,7 +36,7 @@ function* handleHitsSalesFetchSaga() {
 
 function* handleItemFetchSaga(action) {
   try {
-    const data = yield call(() => Api.fetchCatalogItem(action.payload.id));
+    const data = yield call(Api.fetchCatalogItem, action.payload.id); // раньше было так: (() => Api.fetchCatalogItem(action.payload.id))
     yield put(itemFetchSuccess(data));
   } catch (error) {
     yield put(itemFetchFailure(error.message));
@@ -70,7 +70,7 @@ function* handleCatalogFetchSaga(action) {
       params.q = catalog.search;
     }
 
-    data = yield call(() => Api.fetchCatalogItems(params));
+    data = yield call(Api.fetchCatalogItems, params); // раньше было так: (() => Api.fetchCatalogItems(params))
     yield put(catalogFetchItemsSuccess(data, append));
     yield put(catalogFetchSuccess());
   } catch (error) {
@@ -93,7 +93,7 @@ function* handleCartSendSaga(action) {
 
     // отмена запроса, если пользовать ушёл со страницы корзины
     const { result } = yield race({
-      result: call(() => Api.sendCart(data)),
+      result: call(Api.sendCart, data), // раньше было так: (() => Api.sendCart(data))
       location: take(LOCATION_CHANGE),
     });
 

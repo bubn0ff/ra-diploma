@@ -28,10 +28,6 @@ ProductList.propTypes = {
   items: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
-      category: PropTypes.number.isRequired,
-      title: PropTypes.string.isRequired,
-      price: PropTypes.number.isRequired,
-      images: PropTypes.arrayOf(PropTypes.string).isRequired,
     })
   ).isRequired,
 };
